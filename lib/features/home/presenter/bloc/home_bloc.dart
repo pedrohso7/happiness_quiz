@@ -3,17 +3,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:happiness_quiz/core/errors/remote_client_exception.dart';
 import '../../../../core/usecases/usecase.dart';
 import '../../domain/entities/question.dart';
-import '../../domain/usecases/get_questions.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
+  static HomeBloc get(context) => BlocProvider.of(context);
+
   final UseCase<Future<List<Question>>, NoParams> _getQuestions;
   HomeBloc(this._getQuestions) : super(HomeInitial()) {
-    on<HomeEvent>((event, emit) {
+    on<HomeEvent>((event, emit) async {
       if (event is GetQuestions) {
-        getQuestionsEventHandler(emit);
+        await getQuestionsEventHandler(emit);
       }
     });
   }

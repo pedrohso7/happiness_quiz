@@ -7,6 +7,6 @@ sealed class HomeEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetQuizList extends HomeEvent {
-  const GetQuizList();
+class GetQuestions extends HomeEvent {
+  const GetQuestions();
 }
