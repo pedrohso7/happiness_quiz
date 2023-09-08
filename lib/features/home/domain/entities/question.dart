@@ -1,13 +1,13 @@
 enum QuestionType { multiple, boolean }
 
 // enum QuestionCategory { multiple, boolean }
-enum QuestionDifficult { easy, medium, hard }
+enum QuestionDifficulty { easy, medium, hard }
 
 abstract class Question {
   final String category;
   final String question;
   final QuestionType type;
-  final QuestionDifficult difficult;
+  final QuestionDifficulty difficulty;
   final String correctAlternative;
   final List<String> alternatives;
 
@@ -15,7 +15,7 @@ abstract class Question {
     this.category,
     this.question,
     this.type,
-    this.difficult,
+    this.difficulty,
     this.correctAlternative,
     this.alternatives,
   );

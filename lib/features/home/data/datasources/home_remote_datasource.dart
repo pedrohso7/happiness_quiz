@@ -16,8 +16,13 @@ class HomeRemoteDataSource implements HomeRemoteDataSourceInterface {
   @override
   Future<List<Question>> getQuestions() async {
     try {
-      final Response response = await client.dio.get('/questions');
-      final List<Question> questions = response.data
+      final Response response = await client.dio.get(
+        '/',
+        queryParameters: {
+          "amount": 10,
+        },
+      );
+      final List<Question> questions = response.data['results']
           .map<Question>(
             (quiz) => QuestionModel.fromMap(
               quiz as Map<String, dynamic>,

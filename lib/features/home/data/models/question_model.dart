@@ -6,14 +6,14 @@ class QuestionModel extends Question {
     String category,
     String question,
     QuestionType type,
-    QuestionDifficult difficult,
+    QuestionDifficulty difficulty,
     String correctAlternative,
     List<String> alternatives,
   ) : super(
           category,
           question,
           type,
-          difficult,
+          difficulty,
           correctAlternative,
           alternatives,
         );
@@ -23,7 +23,7 @@ class QuestionModel extends Question {
       'category': category,
       'question': question,
       'type': type,
-      "difficult": difficult,
+      "difficulty": difficulty,
       "correctAlternative": correctAlternative,
       "alternativas": alternatives,
     };
@@ -41,17 +41,17 @@ class QuestionModel extends Question {
       return QuestionType.boolean;
     }
 
-    QuestionDifficult getDifficult(String value) {
-      if (value == "easy") return QuestionDifficult.easy;
-      if (value == "medium") return QuestionDifficult.medium;
-      return QuestionDifficult.hard;
+    QuestionDifficulty getDifficulty(String value) {
+      if (value == "easy") return QuestionDifficulty.easy;
+      if (value == "medium") return QuestionDifficulty.medium;
+      return QuestionDifficulty.hard;
     }
 
     return QuestionModel(
       map['category'],
       map['question'],
       getType(map['type']),
-      getDifficult(map['difficult']),
+      getDifficulty(map['difficulty']),
       map['correct_answer'],
       alternatives,
     );
