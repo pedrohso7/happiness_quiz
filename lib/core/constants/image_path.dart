@@ -25,7 +25,7 @@ class AppImages {
   static const String natureIconPath =
       'lib/core/assets/images/category_icons/dna.png';
   static const String computersIconPath =
-      'lib/core/assets/images/category_icons/computer_science.png';
+      'lib/core/assets/images/category_icons/computers.png';
   static const String mathIconPath =
       'lib/core/assets/images/category_icons/maths.png';
   static const String mythologyIconPath =
