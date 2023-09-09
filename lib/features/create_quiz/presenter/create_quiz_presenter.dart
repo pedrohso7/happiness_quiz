@@ -28,7 +28,7 @@ class _CreateQuizPresenter extends State<CreateQuizPresenter> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const DefaultAppbar(withBackButton: false),
+      appBar: DefaultAppbar(title: widget.category),
       backgroundColor: AppColors.backgroundColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(

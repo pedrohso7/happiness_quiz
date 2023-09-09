@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import '../constants/colors.dart';
 import '../constants/image_path.dart';
 import '../constants/sizes.dart';
+import '../constants/text_style.dart';
 
 class DefaultAppbar extends StatelessWidget implements PreferredSizeWidget {
   final bool withBackButton;
+  final String? title;
   final VoidCallback? onPressBackButton;
   const DefaultAppbar({
     Key? key,
     this.withBackButton = true,
+    this.title,
     this.onPressBackButton,
   }) : super(key: key);
 
@@ -23,6 +26,7 @@ class DefaultAppbar extends StatelessWidget implements PreferredSizeWidget {
                 icon: const Icon(
                   Icons.chevron_left,
                   size: AppSizes.s32,
+                  color: AppColors.white,
                 ),
                 onPressed: onPressBackButton,
               )
@@ -35,11 +39,16 @@ class DefaultAppbar extends StatelessWidget implements PreferredSizeWidget {
               ),
       ),
       centerTitle: true,
-      title: Image.asset(
-        AppImages.logoPath,
-        fit: BoxFit.contain,
-        width: AppSizes.s144,
-      ),
+      title: title != null
+          ? Text(
+              title!,
+              style: AppTextStyles.subTitle,
+            )
+          : Image.asset(
+              AppImages.logoPath,
+              fit: BoxFit.contain,
+              width: AppSizes.s144,
+            ),
     );
   }
 
