@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import '../../../../core/constants/colors.dart';
 import '../../../../core/constants/sizes.dart';
 import '../../../../core/constants/text_style.dart';
+import '../../../../core/extensions/sized_box_extension.dart';
+import '../../../../core/helpers/category_helper.dart';
 import '../../../../core/widgets/default_button.dart';
 import '../../domain/entities/question.dart';
-import '../widgets/answered_quiz_list_item.dart';
+import '../widgets/category_list_item.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -26,27 +28,21 @@ class HomePage extends StatelessWidget {
               'Dashboard',
               style: AppTextStyles.title,
             ),
-            const SizedBox(
-              height: AppSizes.s16,
-            ),
+            VerticalSpace.s16,
             const Divider(
               thickness: AppSizes.s2,
               color: AppColors.white,
             ),
-            const SizedBox(
-              height: AppSizes.s16,
-            ),
-            const Text('Histórico:', style: AppTextStyles.subTitle),
-            const SizedBox(
-              height: AppSizes.s16,
-            ),
+            VerticalSpace.s16,
+            const Text('Categorias:', style: AppTextStyles.subTitle),
+            VerticalSpace.s16,
             Expanded(
               child: ListView.builder(
-                itemCount: questions.length,
-                itemBuilder: (context, index) => AnsweredQuizListItem(
-                  correctAnswersCount: questions.length,
-                  totalAnswersCount: questions[index].alternatives.length,
-                  title: questions[index].question,
+                itemCount: CategoryHelper.allCategories.length,
+                itemBuilder: (context, index) => CategoryListItem(
+                  title: CategoryHelper.allCategories[index],
+                  imagePath: CategoryHelper.categoryToImagePathMap[
+                      CategoryHelper.allCategories[index]],
                   onPressListItem: () => {},
                 ),
               ),

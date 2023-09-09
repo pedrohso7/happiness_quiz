@@ -30,4 +30,5 @@ flutter:
 
   assets:
     - lib/core/assets/images/
+    - lib/core/assets/images/category_icons/
     - lib/core/assets/json/
