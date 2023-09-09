@@ -9,7 +9,8 @@ import 'bloc/create_quiz_bloc.dart';
 import 'pages/create_quiz_page.dart';
 
 class CreateQuizPresenter extends StatefulWidget {
-  const CreateQuizPresenter({super.key});
+  final String category;
+  const CreateQuizPresenter({super.key, required this.category});
 
   @override
   State<CreateQuizPresenter> createState() => _CreateQuizPresenter();
@@ -37,7 +38,7 @@ class _CreateQuizPresenter extends State<CreateQuizPresenter> {
         child: BlocBuilder<CreateQuizBloc, CreateQuizState>(
           builder: (context, state) {
             if (state is CreateQuizLoaded) {
-              return CreateQuizPage(questions: state.questions);
+              return CreateQuizPage(category: widget.category);
             }
             if (state is CreateQuizLoading) {
               return const Center(
