@@ -1,10 +1,10 @@
 import '../../../../core/result/result.dart';
 import '../../../../core/usecases/usecase.dart';
 import '../entities/question.dart';
-import '../repositories/home_repository_interface.dart';
+import '../repositories/create_quiz_repository_interface.dart';
 
 class GetQuestions implements UseCase<Future<List<Question>>, NoParams> {
-  final HomeRepositoryInterface repository;
+  final CreateQuizRepositoryInterface repository;
   GetQuestions({required this.repository});
 
   @override
