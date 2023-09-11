@@ -1,7 +1,7 @@
 enum QuestionType { multiple, boolean }
 
 // enum QuestionCategory { multiple, boolean }
-enum QuestionDifficulty { easy, medium, hard }
+enum QuestionDifficulty { easy, medium, hard, random }
 
 abstract class Question {
   final String category;
