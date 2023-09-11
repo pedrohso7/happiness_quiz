@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/colors.dart';
 import '../../../core/constants/sizes.dart';
@@ -21,14 +22,18 @@ class _CreateQuizPresenter extends State<CreateQuizPresenter> {
   @override
   void initState() {
     createQuizBloc = CreateQuizBloc.get(context);
-    createQuizBloc.add(const GetQuestions());
     super.initState();
   }
+
+  void _goBack() => context.pop();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DefaultAppbar(title: widget.category),
+      appBar: DefaultAppbar(
+        title: 'New Quiz',
+        onPressBackButton: _goBack,
+      ),
       backgroundColor: AppColors.backgroundColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(
@@ -37,8 +42,12 @@ class _CreateQuizPresenter extends State<CreateQuizPresenter> {
         ),
         child: BlocBuilder<CreateQuizBloc, CreateQuizState>(
           builder: (context, state) {
-            if (state is CreateQuizLoaded) {
-              return CreateQuizPage(category: widget.category);
+            if (state is CreateQuizDefault) {
+              return CreateQuizPage(
+                category: widget.category,
+                numberOfQuestions: state.numberOfQuestions,
+                difficulty: state.difficulty,
+              );
             }
             if (state is CreateQuizLoading) {
               return const Center(

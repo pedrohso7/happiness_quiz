@@ -7,8 +7,6 @@ sealed class CreateQuizState extends Equatable {
   List<Object> get props => [];
 }
 
-final class CreateQuizInitial extends CreateQuizState {}
-
 final class CreateQuizLoading extends CreateQuizState {}
 
 final class CreateQuizError extends CreateQuizState {
@@ -16,7 +14,14 @@ final class CreateQuizError extends CreateQuizState {
   const CreateQuizError(this.message);
 }
 
-final class CreateQuizLoaded extends CreateQuizState {
-  final List<Question> questions;
-  const CreateQuizLoaded(this.questions);
+final class CreateQuizDefault extends CreateQuizState {
+  final int numberOfQuestions;
+  final QuestionDifficulty difficulty;
+  const CreateQuizDefault({
+    required this.numberOfQuestions,
+    required this.difficulty,
+  });
+
+  @override
+  List<Object> get props => [numberOfQuestions, difficulty];
 }
