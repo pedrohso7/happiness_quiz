@@ -16,7 +16,9 @@ class AppFontSizes {
   static const double s10 = 10.0;
   static const double s12 = 12.0;
   static const double s14 = 14.0;
-  static const double s16 = 14.0;
+  static const double s16 = 16.0;
+  static const double s18 = 18.0;
+  static const double s20 = 20.0;
   static const double s24 = 24.0;
   static const double s32 = 32.0;
   static const double s36 = 36.0;
@@ -27,7 +29,7 @@ class AppTextStyles {
   static const TextStyle title = TextStyle(
     color: AppColors.white,
     fontWeight: AppFontWeights.ultraBold,
-    fontSize: AppFontSizes.s24,
+    fontSize: AppFontSizes.s18,
   );
 
   static const TextStyle subTitle = TextStyle(
