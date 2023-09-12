@@ -10,6 +10,7 @@ import '../../../../core/widgets/filled_container.dart';
 import '../../domain/entities/question.dart';
 import '../bloc/create_quiz_bloc.dart';
 import '../widgets/difficulty_selector_widget.dart';
+import '../widgets/number_of_questions_selector_widget.dart';
 
 class CreateQuizPage extends StatelessWidget {
   const CreateQuizPage({
@@ -72,6 +73,10 @@ class CreateQuizPage extends StatelessWidget {
               VerticalSpace.s16,
               const Text('Number of questions:', style: AppTextStyles.subTitle),
               VerticalSpace.s16,
+              NumberOfQuestionsSelectorWidget(
+                selectedValue: numberOfQuestions,
+                onPressItem: setNumberOfQuestions,
+              ),
             ],
           ),
           DefaultButton(
