@@ -24,17 +24,17 @@ class DifficultySelectorWidget extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  _getCustomStar(
+                  _buildCustomStarButton(
                       true, () => onPressItem(QuestionDifficulty.easy)),
                   HorizontalSpace.s8,
-                  _getCustomStar(
+                  _buildCustomStarButton(
                       false, () => onPressItem(QuestionDifficulty.medium)),
                   HorizontalSpace.s8,
-                  _getCustomStar(
+                  _buildCustomStarButton(
                       false, () => onPressItem(QuestionDifficulty.hard)),
                 ],
               ),
-              _getRandomStar(
+              _buildRandomButton(
                   false, () => onPressItem(QuestionDifficulty.random)),
             ],
           );
@@ -45,17 +45,17 @@ class DifficultySelectorWidget extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  _getCustomStar(
+                  _buildCustomStarButton(
                       true, () => onPressItem(QuestionDifficulty.easy)),
                   HorizontalSpace.s8,
-                  _getCustomStar(
+                  _buildCustomStarButton(
                       true, () => onPressItem(QuestionDifficulty.medium)),
                   HorizontalSpace.s8,
-                  _getCustomStar(
+                  _buildCustomStarButton(
                       false, () => onPressItem(QuestionDifficulty.hard)),
                 ],
               ),
-              _getRandomStar(
+              _buildRandomButton(
                   false, () => onPressItem(QuestionDifficulty.random)),
             ],
           );
@@ -66,17 +66,17 @@ class DifficultySelectorWidget extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  _getCustomStar(
+                  _buildCustomStarButton(
                       true, () => onPressItem(QuestionDifficulty.easy)),
                   HorizontalSpace.s8,
-                  _getCustomStar(
+                  _buildCustomStarButton(
                       true, () => onPressItem(QuestionDifficulty.medium)),
                   HorizontalSpace.s8,
-                  _getCustomStar(
+                  _buildCustomStarButton(
                       true, () => onPressItem(QuestionDifficulty.hard)),
                 ],
               ),
-              _getRandomStar(
+              _buildRandomButton(
                   false, () => onPressItem(QuestionDifficulty.random)),
             ],
           );
@@ -86,24 +86,25 @@ class DifficultySelectorWidget extends StatelessWidget {
           children: [
             Row(
               children: [
-                _getCustomStar(
+                _buildCustomStarButton(
                     false, () => onPressItem(QuestionDifficulty.easy)),
                 HorizontalSpace.s8,
-                _getCustomStar(
+                _buildCustomStarButton(
                     false, () => onPressItem(QuestionDifficulty.medium)),
                 HorizontalSpace.s8,
-                _getCustomStar(
+                _buildCustomStarButton(
                     false, () => onPressItem(QuestionDifficulty.hard)),
               ],
             ),
-            _getRandomStar(true, () => onPressItem(QuestionDifficulty.random)),
+            _buildRandomButton(
+                true, () => onPressItem(QuestionDifficulty.random)),
           ],
         );
       },
     );
   }
 
-  Widget _getCustomStar(bool isFilled, VoidCallback onTap) => InkWell(
+  Widget _buildCustomStarButton(bool isFilled, VoidCallback onTap) => InkWell(
         borderRadius: BorderRadius.circular(AppSizes.s40),
         onTap: onTap,
         child: Padding(
@@ -119,7 +120,7 @@ class DifficultySelectorWidget extends StatelessWidget {
         ),
       );
 
-  Widget _getRandomStar(bool isFilled, VoidCallback onTap) => InkWell(
+  Widget _buildRandomButton(bool isFilled, VoidCallback onTap) => InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(AppSizes.s48),
         child: Padding(
