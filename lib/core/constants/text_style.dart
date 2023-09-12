@@ -44,6 +44,12 @@ class AppTextStyles {
     fontSize: AppFontSizes.s14,
   );
 
+  static const TextStyle defaultTextBold = TextStyle(
+    color: AppColors.white,
+    fontWeight: AppFontWeights.ultraBold,
+    fontSize: AppFontSizes.s14,
+  );
+
   static const TextStyle defaultBlackText = TextStyle(
     color: AppColors.black,
     fontWeight: AppFontWeights.semiBold,
