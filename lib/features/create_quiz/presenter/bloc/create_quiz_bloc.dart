@@ -1,15 +1,17 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/errors/remote_client_exception.dart';
 import '../../../../core/usecases/usecase.dart';
 import '../../domain/entities/question.dart';
+import '../../domain/usecases/get_questions.dart';
 
 part 'create_quiz_event.dart';
 part 'create_quiz_state.dart';
 
 class CreateQuizBloc extends Bloc<CreateQuizEvent, CreateQuizState> {
   static CreateQuizBloc get(context) => BlocProvider.of(context);
-  final UseCase<Future<List<Question>>, NoParams> _getQuestions;
+  final UseCase<Future<List<Question>>, GetQuestionsParams> _getQuestions;
   CreateQuizBloc(this._getQuestions)
       : super(
           const CreateQuizDefault(
@@ -26,8 +28,8 @@ class CreateQuizBloc extends Bloc<CreateQuizEvent, CreateQuizState> {
         await _handleSetNumberOfQuestionsEvent(
             event, emit, state as CreateQuizDefault);
       }
-      if (event is GetQuestions) {
-        await getQuestionsEventHandler(emit);
+      if (event is GetQuestionsEvent) {
+        await _handleGetQuestionsEvent(event, emit);
       }
     });
   }
@@ -48,11 +50,16 @@ class CreateQuizBloc extends Bloc<CreateQuizEvent, CreateQuizState> {
     ));
   }
 
-  Future getQuestionsEventHandler(Emitter<CreateQuizState> emit) async {
+  Future<void> _handleGetQuestionsEvent(
+      GetQuestionsEvent event, Emitter<CreateQuizState> emit) async {
     try {
       emit(CreateQuizLoading());
-      final List<Question> questions = await _getQuestions(NoParams());
-      // emit(CreateQuizDefault(questions));
+      final List<Question> questions = await _getQuestions(GetQuestionsParams(
+        event.difficulty,
+        event.numberOfQuestions,
+      ));
+      debugPrint('fdsfdsfs');
+      // event.context.goNamed(name)
     } on RemoteClientException catch (e) {
       emit(CreateQuizError(e.message));
     }

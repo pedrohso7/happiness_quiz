@@ -17,6 +17,10 @@ class SetNumberOfQuestionsEvent extends CreateQuizEvent {
   const SetNumberOfQuestionsEvent({required this.numberOfQuestions});
 }
 
-class GetQuestions extends CreateQuizEvent {
-  const GetQuestions();
+class GetQuestionsEvent extends CreateQuizEvent {
+  final QuestionDifficulty difficulty;
+  final int numberOfQuestions;
+  final BuildContext context; //To redirect
+  const GetQuestionsEvent(
+      this.difficulty, this.numberOfQuestions, this.context);
 }

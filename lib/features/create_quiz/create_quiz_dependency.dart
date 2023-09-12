@@ -6,6 +6,7 @@ import 'data/repositories/create_quiz_repository.dart';
 import 'domain/entities/question.dart';
 import 'domain/repositories/create_quiz_repository_interface.dart';
 import 'domain/usecases/get_questions.dart' as usecase;
+import 'domain/usecases/get_questions.dart';
 import 'presenter/bloc/create_quiz_bloc.dart';
 
 Future<void> initCreateQuizDependencies(GetIt sl) async {
@@ -24,7 +25,7 @@ Future<void> initCreateQuizDependencies(GetIt sl) async {
   );
 
   // Use cases
-  sl.registerLazySingleton<UseCase<Future<List<Question>>, NoParams>>(
+  sl.registerLazySingleton<UseCase<Future<List<Question>>, GetQuestionsParams>>(
     () => usecase.GetQuestions(repository: sl()),
   );
 

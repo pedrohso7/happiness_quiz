@@ -33,6 +33,10 @@ class CreateQuizPage extends StatelessWidget {
     void setNumberOfQuestions(int numberOfQuestions) => createQuizBloc
         .add(SetNumberOfQuestionsEvent(numberOfQuestions: numberOfQuestions));
 
+    void getQuestions() => createQuizBloc.add(
+          GetQuestionsEvent(difficulty, numberOfQuestions, context),
+        );
+
     return FilledContainer(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -82,7 +86,7 @@ class CreateQuizPage extends StatelessWidget {
           DefaultButton(
             width: MediaQuery.of(context).size.width,
             label: "Iniciar Quiz",
-            onPressed: () => {},
+            onPressed: () => getQuestions(),
           ),
         ],
       ),
