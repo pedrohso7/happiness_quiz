@@ -8,16 +8,12 @@ import '../../../../core/constants/text_style.dart';
 import '../../../../core/extensions/sized_box_extension.dart';
 import '../../../../core/helpers/category_helper.dart';
 import '../../../../core/widgets/default_button.dart';
-import '../../domain/entities/question.dart';
 import '../widgets/category_list_item.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
     Key? key,
-    required this.questions,
   }) : super(key: key);
-
-  final List<Question> questions;
 
   void _goToQuizCreation(BuildContext context, String category) {
     context.pushNamed(
