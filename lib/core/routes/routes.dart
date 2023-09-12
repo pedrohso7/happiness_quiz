@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../features/answer_quiz/domain/entities/question.dart';
+import '../../features/answer_quiz/presenter/answer_quiz_presenter.dart';
 import '../../features/create_quiz/presenter/create_quiz_presenter.dart';
 import '../../features/home/presenter/home_presenter.dart';
 import '../constants/routes.dart';
@@ -25,6 +27,14 @@ class AppRoutes {
           builder: (BuildContext context, GoRouterState state) {
             return CreateQuizPresenter(
                 category: state.pathParameters['category']!);
+          },
+        ),
+        GoRoute(
+          name: AppRoutesPath.answerQuiz,
+          path: AppRoutesPath.answerQuiz,
+          builder: (BuildContext context, GoRouterState state) {
+            List<Question> questions = state.extra as List<Question>;
+            return AnswerQuizPresenter(questions: questions);
           },
         ),
       ],
