@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/dependencies/app_dependencies.dart' as dep;
 import 'core/routes/routes.dart';
+import 'features/quiz/presenter/answer_quiz/bloc/answer_quiz_bloc.dart';
 import 'features/quiz/presenter/create_quiz/bloc/create_quiz_bloc.dart';
 
 void main() async {
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => dep.sl<CreateQuizBloc>()),
+        BlocProvider(create: (context) => dep.sl<AnswerQuizBloc>()),
       ],
       child: MaterialApp.router(
         title: 'Flutter Demo',

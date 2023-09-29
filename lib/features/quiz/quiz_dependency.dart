@@ -6,6 +6,7 @@ import 'data/repositories/quiz_repository.dart';
 import 'domain/entities/question.dart';
 import 'domain/repositories/quiz_repository_interface.dart';
 import 'domain/usecases/get_questions.dart';
+import 'presenter/answer_quiz/bloc/answer_quiz_bloc.dart';
 import 'presenter/create_quiz/bloc/create_quiz_bloc.dart';
 
 Future<void> initQuizDependencies(GetIt sl) async {
@@ -31,5 +32,9 @@ Future<void> initQuizDependencies(GetIt sl) async {
   // Bloc
   sl.registerLazySingleton(
     () => CreateQuizBloc(sl()),
+  );
+
+  sl.registerLazySingleton(
+    () => AnswerQuizBloc(),
   );
 }
