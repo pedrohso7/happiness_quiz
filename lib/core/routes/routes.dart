@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/home/presenter/home_presenter.dart';
-import '../../features/quiz/presenter/create_quiz_presenter.dart';
+import '../../features/quiz/presenter/create_quiz/create_quiz_presenter.dart';
 import '../constants/routes.dart';
 
 class AppRoutes {
