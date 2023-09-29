@@ -3,7 +3,8 @@ import 'dart:core';
 import 'package:get_it/get_it.dart';
 import 'package:happiness_quiz/core/platform/quiz_api_client.dart';
 import 'package:happiness_quiz/features/home/home_dependency.dart';
-import '../../features/create_quiz/create_quiz_dependency.dart';
+
+import '../../features/quiz/create_quiz_dependency.dart';
 
 final sl = GetIt.instance;
 
@@ -13,5 +14,5 @@ Future<void> initDependencies() async {
 
   // Features
   await initHomeDependencies(sl);
-  await initCreateQuizDependencies(sl);
+  await initQuizDependencies(sl);
 }

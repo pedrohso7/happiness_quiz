@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/dependencies/app_dependencies.dart' as dep;
 import 'core/routes/routes.dart';
-import 'features/create_quiz/presenter/bloc/create_quiz_bloc.dart';
+import 'features/quiz/presenter/create_quiz/bloc/create_quiz_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
