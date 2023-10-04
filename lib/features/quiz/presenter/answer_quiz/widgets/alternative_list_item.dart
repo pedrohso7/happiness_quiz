@@ -6,13 +6,11 @@ import '../../../../../core/constants/text_style.dart';
 
 class AlternativeListItem extends StatelessWidget {
   final String title;
-  final int alternativeNumber;
   final VoidCallback onPressListItem;
   final bool isSelected;
   const AlternativeListItem({
     Key? key,
     required this.title,
-    required this.alternativeNumber,
     required this.onPressListItem,
     required this.isSelected,
   }) : super(key: key);

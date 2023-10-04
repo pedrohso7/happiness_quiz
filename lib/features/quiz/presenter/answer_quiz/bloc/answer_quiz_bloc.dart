@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 part 'answer_quiz_event.dart';
 part 'answer_quiz_state.dart';
@@ -38,7 +37,6 @@ class AnswerQuizBloc extends Bloc<AnswerQuizEvent, AnswerQuizState> {
       state.currentQuestionCount,
       event.selectedAnswer,
     ));
-    event.goToNextQuestion();
   }
 
   Future<void> _handleGoToNextQuestionEvent(

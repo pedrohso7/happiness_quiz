@@ -12,6 +12,9 @@ final class AnswerQuizInitial extends AnswerQuizState {}
 final class AnswerQuizError extends AnswerQuizState {
   final String message;
   const AnswerQuizError(this.message);
+
+  @override
+  List<Object> get props => [message];
 }
 
 final class AnswerQuizDefault extends AnswerQuizState {
@@ -21,4 +24,7 @@ final class AnswerQuizDefault extends AnswerQuizState {
     this.currentQuestionCount,
     this.selectedAlternative,
   );
+
+  @override
+  List<Object> get props => [currentQuestionCount, selectedAlternative];
 }

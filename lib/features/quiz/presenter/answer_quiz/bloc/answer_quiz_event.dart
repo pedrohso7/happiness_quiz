@@ -11,10 +11,8 @@ class SetInitialState extends AnswerQuizEvent {}
 
 class ChooseAlternativeEvent extends AnswerQuizEvent {
   final String selectedAnswer;
-  final VoidCallback goToNextQuestion;
   const ChooseAlternativeEvent({
     required this.selectedAnswer,
-    required this.goToNextQuestion,
   });
 }
 

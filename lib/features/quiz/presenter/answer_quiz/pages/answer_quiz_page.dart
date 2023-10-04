@@ -11,11 +11,13 @@ import '../../../domain/entities/question.dart';
 class AnswerQuizPage extends StatelessWidget {
   final List<Question> questions;
   final int currentQuestionCount;
+  final int totalQuestionsCount;
   final String selectedAlternative;
   final Function(String alternative) onPressAlternative;
   const AnswerQuizPage(
       {Key? key,
       required this.currentQuestionCount,
+      required this.totalQuestionsCount,
       required this.selectedAlternative,
       required this.onPressAlternative,
       required this.questions})
@@ -39,7 +41,7 @@ class AnswerQuizPage extends StatelessWidget {
                 ),
                 const SizedBox(width: AppSizes.s4),
                 Text(
-                  'Pergunta $currentQuestionCount/ ${questions.length}',
+                  'Pergunta $currentQuestionCount/ $totalQuestionsCount',
                   style: AppTextStyles.defaultYellowText,
                 ),
               ],
@@ -47,7 +49,7 @@ class AnswerQuizPage extends StatelessWidget {
             VerticalSpace.s24,
             Expanded(
               child: Stack(
-                children: questions
+                children: questions.reversed
                     .map<Widget>(
                       (question) => QuestionCard(
                         question: question,

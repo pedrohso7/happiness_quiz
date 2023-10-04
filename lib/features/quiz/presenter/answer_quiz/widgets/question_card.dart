@@ -42,7 +42,6 @@ class QuestionCard extends StatelessWidget with HtmlConversionMixin {
             child: ListView.builder(
               itemCount: question.alternatives.length,
               itemBuilder: (context, index) => AlternativeListItem(
-                alternativeNumber: index + 1,
                 isSelected: question.alternatives[index] == selectedAlternative,
                 title: question.alternatives[index],
                 onPressListItem: () =>

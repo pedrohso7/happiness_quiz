@@ -29,19 +29,22 @@ class _AnswerQuizPresenter extends State<AnswerQuizPresenter> {
 
   void _goBack() => context.pop();
 
-  void _goToNextQuestion() async {
+  Future<void> _goToNextQuestion() async {
     await Future.delayed(
-        const Duration(seconds: 3),
-        () => bloc.add(
-              GoToNextQuestionEvent(),
-            ));
+      const Duration(seconds: 3),
+      () => bloc.add(
+        GoToNextQuestionEvent(),
+      ),
+    );
   }
 
-  void _onPressAlternative(String alternative) =>
-      bloc.add(ChooseAlternativeEvent(
-        selectedAnswer: alternative,
-        goToNextQuestion: _goToNextQuestion,
-      ));
+  Future<void> _onPressAlternative(String alternative) async {
+    bloc.add(ChooseAlternativeEvent(selectedAnswer: alternative));
+    await _goToNextQuestion();
+  }
+
+  List<Question> _getQuestionsLeft(int currentQuestion) =>
+      widget.questions.sublist(currentQuestion);
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +65,8 @@ class _AnswerQuizPresenter extends State<AnswerQuizPresenter> {
               return AnswerQuizPage(
                 currentQuestionCount: state.currentQuestionCount,
                 selectedAlternative: state.selectedAlternative,
-                questions: widget.questions,
+                questions: _getQuestionsLeft(state.currentQuestionCount - 1),
+                totalQuestionsCount: widget.questions.length,
                 onPressAlternative: _onPressAlternative,
               );
             }
