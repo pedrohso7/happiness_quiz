@@ -52,9 +52,9 @@ class QuizRemoteDataSource implements QuizRemoteDataSourceInterface {
           .toList();
       return questions;
     } on DioException catch (e) {
-      throw RemoteClientException(e.message!);
+      throw RemoteClientException(e.message ?? 'Erro ao buscar perguntas');
     } catch (e) {
-      throw RemoteClientException('Erro ao buscar questionários respondidos');
+      throw RemoteClientException('Erro ao buscar perguntas');
     }
   }
 }

@@ -1,8 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:happiness_quiz/core/constants/routes.dart';
 import '../../../../../core/errors/remote_client_exception.dart';
 import '../../../../../core/usecases/usecase.dart';
 import '../../../domain/entities/question.dart';

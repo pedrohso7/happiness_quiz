@@ -1,25 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:happiness_quiz/core/widgets/filled_container.dart';
 
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/constants/sizes.dart';
 import '../../../../../core/constants/text_style.dart';
-import '../../../../../core/widgets/default_button.dart';
-import '../../../../../core/widgets/filled_container.dart';
 import '../../../domain/entities/question.dart';
-import '../bloc/answer_quiz_bloc.dart';
+import '../widgets/alternative_list_item.dart';
 
 class AnswerQuizPage extends StatelessWidget {
-  const AnswerQuizPage({
-    Key? key,
-    required this.questions,
-  }) : super(key: key);
-
   final List<Question> questions;
+  final int currentQuestionCount;
+  final String selectedAlternative;
+  final Function(String alternative) onPressAlternative;
+  const AnswerQuizPage(
+      {Key? key,
+      required this.currentQuestionCount,
+      required this.selectedAlternative,
+      required this.onPressAlternative,
+      required this.questions})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final AnswerQuizBloc createQuizBloc = AnswerQuizBloc.get(context);
-
     return FilledContainer(
       child: Padding(
         padding: const EdgeInsets.symmetric(
@@ -28,50 +30,52 @@ class AnswerQuizPage extends StatelessWidget {
         ),
         child: Stack(
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.emoji_objects,
-                      color: AppColors.yellow,
-                    ),
-                    const SizedBox(width: AppSizes.s4),
-                    Text(
-                      'Pergunta 1/10',
-                      style: AppTextStyles.defaultYellowText,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: AppSizes.s24),
-                Text(
-                  'question',
-                  style: AppTextStyles.subTitle,
-                ),
-                const SizedBox(height: AppSizes.s32),
-              ],
-            ),
-            Container(
-              padding: const EdgeInsets.only(bottom: AppFontSizes.s24),
-              alignment: Alignment.bottomRight,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  DefaultButton(
-                    height: AppSizes.s80,
-                    width: AppSizes.s80,
-                    borderRadius: AppSizes.s80,
-                    onPressed: () => {},
-                    child: Icon(
-                      Icons.arrow_circle_right,
+            ...questions
+                .map<Widget>(
+                  (question) => Positioned(
+                    child: Container(
                       color: AppColors.white,
-                      size: AppSizes.s40,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              const Icon(
+                                Icons.emoji_objects,
+                                color: AppColors.yellow,
+                              ),
+                              const SizedBox(width: AppSizes.s4),
+                              Text(
+                                'Pergunta $currentQuestionCount/ ${questions.length}',
+                                style: AppTextStyles.defaultYellowText,
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: AppSizes.s24),
+                          Text(
+                            question.question,
+                            style: AppTextStyles.subTitle,
+                          ),
+                          const SizedBox(height: AppSizes.s32),
+                          Expanded(
+                            child: ListView.builder(
+                              itemCount: question.alternatives.length,
+                              itemBuilder: (context, index) =>
+                                  AlternativeListItem(
+                                alternativeNumber: index + 1,
+                                isSelected: question.alternatives[index] ==
+                                    selectedAlternative,
+                                title: question.alternatives[index],
+                                onPressListItem: () => onPressAlternative,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ],
-              ),
-            ),
+                )
+                .toList()
           ],
         ),
       ),

@@ -20,10 +20,10 @@ class CreateQuizPresenter extends StatefulWidget {
 }
 
 class _CreateQuizPresenter extends State<CreateQuizPresenter> {
-  late CreateQuizBloc createQuizBloc;
+  late CreateQuizBloc bloc;
   @override
   void initState() {
-    createQuizBloc = CreateQuizBloc.get(context);
+    bloc = CreateQuizBloc.get(context);
     super.initState();
   }
 

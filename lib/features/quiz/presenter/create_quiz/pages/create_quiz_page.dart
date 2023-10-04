@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:happiness_quiz/core/constants/routes.dart';
 
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/constants/sizes.dart';
@@ -30,15 +28,15 @@ class CreateQuizPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final CreateQuizBloc createQuizBloc = CreateQuizBloc.get(context);
+    final CreateQuizBloc bloc = CreateQuizBloc.get(context);
 
     void setDifficulty(QuestionDifficulty difficulty) =>
-        createQuizBloc.add(SetDifficultyEvent(difficulty: difficulty));
-    void setNumberOfQuestions(int numberOfQuestions) => createQuizBloc
+        bloc.add(SetDifficultyEvent(difficulty: difficulty));
+    void setNumberOfQuestions(int numberOfQuestions) => bloc
         .add(SetNumberOfQuestionsEvent(numberOfQuestions: numberOfQuestions));
 
     void getQuestions() {
-      createQuizBloc.add(
+      bloc.add(
         GetQuestionsEvent(
             difficulty, numberOfQuestions, goToAnswerQuizPage, category),
       );

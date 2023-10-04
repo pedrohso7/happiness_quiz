@@ -19,20 +19,35 @@ class AnswerQuizPresenter extends StatefulWidget {
 }
 
 class _AnswerQuizPresenter extends State<AnswerQuizPresenter> {
-  late AnswerQuizBloc createQuizBloc;
+  late AnswerQuizBloc bloc;
   @override
   void initState() {
-    createQuizBloc = AnswerQuizBloc.get(context);
+    bloc = AnswerQuizBloc.get(context);
+    bloc.add(SetInitialState());
     super.initState();
   }
 
   void _goBack() => context.pop();
 
+  void _goToNextQuestion() async {
+    await Future.delayed(
+        const Duration(seconds: 3),
+        () => bloc.add(
+              GoToNextQuestionEvent(),
+            ));
+  }
+
+  void _onPressAlternative(String alternative) =>
+      bloc.add(ChooseAlternativeEvent(
+        selectedAnswer: alternative,
+        goToNextQuestion: _goToNextQuestion,
+      ));
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: DefaultAppbar(
-        title: 'New Quiz',
+        title: 'Answer Quiz',
         onPressBackButton: _goBack,
       ),
       backgroundColor: AppColors.backgroundColor,
@@ -45,12 +60,10 @@ class _AnswerQuizPresenter extends State<AnswerQuizPresenter> {
           builder: (context, state) {
             if (state is AnswerQuizDefault) {
               return AnswerQuizPage(
+                currentQuestionCount: state.currentQuestionCount,
+                selectedAlternative: state.selectedAlternative,
                 questions: widget.questions,
-              );
-            }
-            if (state is AnswerQuizLoading) {
-              return const Center(
-                child: CircularProgressIndicator(),
+                onPressAlternative: _onPressAlternative,
               );
             }
             if (state is AnswerQuizError) {
