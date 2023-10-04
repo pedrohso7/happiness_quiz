@@ -2,6 +2,12 @@ class AppImages {
   AppImages._();
   static const String logoPath = 'lib/core/assets/images/logo.png';
   static const String triviaImagePath = 'lib/core/assets/images/trivia.png';
+  static const String starImagePath = 'lib/core/assets/images/star.png';
+  static const String emptyStarImagePath =
+      'lib/core/assets/images/empty_star.png';
+  static const String emptyRandomImagePath =
+      'lib/core/assets/images/empty_shuffle.png';
+  static const String randomImagePath = 'lib/core/assets/images/shuffle.png';
 
   //Category Icons Images
   static const String randomIconPath =
