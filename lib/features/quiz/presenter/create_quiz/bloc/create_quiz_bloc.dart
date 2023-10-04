@@ -53,11 +53,12 @@ class CreateQuizBloc extends Bloc<CreateQuizEvent, CreateQuizState> {
       GetQuestionsEvent event, Emitter<CreateQuizState> emit) async {
     try {
       emit(CreateQuizLoading());
-      _getQuestions(GetQuestionsParams(
+      final response = await _getQuestions(GetQuestionsParams(
         event.difficulty,
         event.numberOfQuestions,
         event.category,
-      )).then((value) => event.goToAnswerQuizPage(value));
+      ));
+      event.goToAnswerQuizPage(response);
     } on RemoteClientException catch (e) {
       emit(CreateQuizError(e.message));
     }

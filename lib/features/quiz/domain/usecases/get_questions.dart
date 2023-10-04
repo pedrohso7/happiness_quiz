@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:happiness_quiz/core/errors/remote_client_exception.dart';
 
 import '../../../../core/result/result.dart';
 import '../../../../core/usecases/usecase.dart';
@@ -15,7 +16,7 @@ class GetQuestions
     final IResult response = await repository.getQuestions(params);
 
     if (response.isError) {
-      throw response.error!;
+      throw (response as ErrorResult).exception as RemoteClientException;
     }
 
     return response.result;

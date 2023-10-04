@@ -1,4 +1,4 @@
-import '../../../../core/errors/local_storage_exception.dart';
+import '../../../../core/errors/remote_client_exception.dart';
 import '../../../../core/result/result.dart';
 import '../../domain/entities/question.dart';
 import '../../domain/repositories/quiz_repository_interface.dart';
@@ -17,7 +17,7 @@ class QuizRepository implements QuizRepositoryInterface {
       GetQuestionsParams params) async {
     try {
       return SuccessResult(await remoteDatasource.getQuestions(params));
-    } on LocalStorageException catch (e) {
+    } on RemoteClientException catch (e) {
       return ErrorResult(e);
     }
   }
