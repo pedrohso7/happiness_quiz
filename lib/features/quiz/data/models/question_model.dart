@@ -2,7 +2,7 @@ import 'dart:convert';
 import '../../domain/entities/question.dart';
 
 class QuestionModel extends Question {
-  QuestionModel(
+  const QuestionModel(
     String category,
     String question,
     QuestionType type,
@@ -19,11 +19,22 @@ class QuestionModel extends Question {
         );
 
   Map<String, dynamic> toMap() {
+    String getType(QuestionType value) {
+      if (value == QuestionType.multiple) return 'multiple';
+      return 'boolean';
+    }
+
+    String getDifficulty(QuestionDifficulty value) {
+      if (value == QuestionDifficulty.easy) return "easy";
+      if (value == QuestionDifficulty.medium) return "medium";
+      return 'hard';
+    }
+
     return {
       'category': category,
       'question': question,
-      'type': type,
-      "difficulty": difficulty,
+      'type': getType(type),
+      "difficulty": getDifficulty(difficulty),
       "correctAlternative": correctAlternative,
       "alternativas": alternatives,
     };
